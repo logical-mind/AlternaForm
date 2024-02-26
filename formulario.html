@@ -4,11 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    ,initial-scale=1.0">
     <title>Formulario</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
 </head>
+
 <style>
+    .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;  
+        }
+
+
     body {
             text-align: center;
             background-color: #ccc;
@@ -61,12 +71,9 @@
     }
 </style>
 
-
-
-
 <body>
 
-    <form>
+    <form id="formulario">
         <h1>Formulario de practica Alterna</h1>
 
         <label for="nombre">Nombre:</label><br>
@@ -97,7 +104,16 @@
         <input type="submit" value="Enviar">
     </form>
 
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span style="cursor: pointer;" class="close">&times;</span>
+            <h2>Datos del Formulario</h2>
+            <p id="modal-content"></p>
+        </div>
+    </div>
+
     <script>
+        var form = document.getElementById("formulario");
         var cedulaInput = document.getElementById('cedula')
         var telefonoInput = document.getElementById('telefono')
         var nombreInput = document.getElementById('nombre')
@@ -119,8 +135,40 @@
         })
 
 
-      
+function showModal() {
+    var modal = document.getElementById("myModal");
+    var modalContent = document.getElementById("modal-content");
+    var fields = form.querySelectorAll("input, select, textarea");
 
+    var data = "";
+    for (var i = 0; i < fields.length; i++) {
+        var field = fields[i];
+        if (field.type !== "submit") {
+            data += "<strong>" + field.name + ":</strong> " + field.value + "<br>";
+        }
+    }
+
+    modalContent.innerHTML = data;
+    modal.style.display = "block";
+   }
+
+
+
+
+   function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); 
+
+            showModal();
+        });
+
+        var closeButton = document.getElementsByClassName("close")[0];
+        closeButton.onclick = closeModal;
+   
     </script>
 </body>
 
