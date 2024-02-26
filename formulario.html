@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Formulario</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.1.0/imask.min.js"></script>
+</head>
+<style>
+    body {
+            text-align: center;
+            background-color: #ccc;
+        }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    input[type="file"] {
+        cursor: pointer;
+    }
+
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+
+
+<body>
+
+    <form>
+        <h1>Formulario de practica Alterna</h1>
+
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="apellido">Apellido:</label><br>
+        <input type="text" id="apellido" name="apellido" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="telefono">Teléfono:</label><br>
+        <input type="tel" id="telefono" name="telefono" required><br><br>
+
+        <label for="direccion">Dirección:</label><br>
+        <input type="text" id="direccion" name="direccion" required><br><br>
+
+        <label for="Fecha de Nacimiento">Edad:</label><br>
+        <input type="date" id="edad" name="edad" required><br><br>
+
+        <label for="cedula">Cédula:</label><br>
+        <input type="text" id="cedula" name="cedula" required><br><br>
+
+        <label for="foto">Foto:</label><br>
+        <div id="foto-muestra"></div>
+        <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        var cedulaInput = document.getElementById('cedula')
+        var telefonoInput = document.getElementById('telefono')
+        var nombreInput = document.getElementById('nombre')
+        var apellidoInput = document.getElementById('apellido')
+
+        var cedulaMask = IMask(cedulaInput, { mask: '000-0000000-0' })
+        var cedulaMask = IMask(telefonoInput, { mask: '000-000-0000' })
+
+        nombreInput.addEventListener('input', function () {
+            nombreInput.value = nombreInput.value.replace(/\b\w/g, function (char) {
+                return char.toUpperCase();
+            })
+        })
+
+        apellidoInput.addEventListener('input', function () {
+            apellidoInput.value = apellidoInput.value.replace(/\b\w/g, function (char) {
+                return char.toUpperCase();
+            })
+        })
+
+
+      
+
+    </script>
+</body>
+
+</html>
